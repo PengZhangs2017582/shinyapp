@@ -1,0 +1,40 @@
+---
+title: "My_shiny_app"
+author: "Peng Zhang S2017582"
+date: "2021/4/21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(shiny)
+library(ggplot2)
+library(datasets)
+#data()
+```
+
+
+```{r }
+Loblolly
+```
+
+```{r }
+n = 50
+server <- function(input, output) {
+  output$plot <- renderPlot({
+    ggplot(Loblolly[1:input$n,], aes(x=height))+geom_histogram()
+  })
+}
+
+```
+
+```{r }
+ui <- bootstrapPage(
+  numericInput('n', 'Number of obs(<84)', n),
+  plotOutput('plot')
+)
+
+
+# Create Shiny app ----
+shinyApp(ui = ui, server = server)
+```
+
